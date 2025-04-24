@@ -1,37 +1,43 @@
 import streamlit as st
 from streamlit_drawable_canvas import st_canvas
+# (Todos tus demás imports originales aquí)
 
-# 1. Título original (sin cambios)
+# ===== PARTE 1: Título y configuración original =====
 st.title("Tablero para dibujo")
 
-# 2. Barra lateral CON las nuevas personalizaciones (agregado)
+# ===== PARTE 2: Sidebar con controles NUEVOS + originales =====
 with st.sidebar:
-    st.subheader("Propiedades del Tablero")
-    
-    # Selector de herramientas (nuevo)
+    # --- Controles NUEVOS para dibujo ---
+    st.subheader("Herramientas de Dibujo")
     drawing_mode = st.selectbox(
-        "Herramienta de Dibujo:",
+        "Modo de dibujo:",
         ("freedraw", "line", "rect", "circle", "transform", "polygon", "point"),
-        index=0  # 'freedraw' como predeterminado
+        index=0
     )
+    stroke_width = st.slider("Grosor", 1, 30, 5)
+    stroke_color = st.color_picker("Color", "#FFFFFF")
+    bg_color = st.color_picker("Fondo", "#000000")
     
-    # Selectores de color (nuevos)
-    stroke_color = st.color_picker("Color de trazo", "#FFFFFF")
-    bg_color = st.color_picker("Color de fondo", "#000000")
-    
-    # Grosor de línea (nuevo)
-    stroke_width = st.slider("Ancho de línea", 1, 30, 5)
+    # --- TUS CONTROLES ORIGINALES (API key, etc.) ---
+    # (Pega aquí todo el contenido original de tu sidebar)
+    # st.text_input("API Key", type="password")  # Ejemplo, usa tus controles reales
+    # st.selectbox("Modelo", ["GPT-4", "Claude"])  # Ejemplo
 
-# 3. Canvas original PERO usando las nuevas personalizaciones (modificado solo en parámetros)
+# ===== PARTE 3: Canvas con nuevas herramientas =====
 canvas_result = st_canvas(
     fill_color="rgba(255, 165, 0, 0.3)",
-    stroke_width=stroke_width,        # ← Usa el valor del slider
-    stroke_color=stroke_color,        # ← Usa el color seleccionado
-    background_color=bg_color,       # ← Usa el color de fondo elegido
-    height=300,                       # ← Tamaño original (sin cambios)
-    width=500,                        # ← Tamaño original (sin cambios)
-    drawing_mode=drawing_mode,        # ← Usa la herramienta seleccionada
+    stroke_width=stroke_width,
+    stroke_color=stroke_color,
+    background_color=bg_color,
+    height=300,  # Tamaño original
+    width=500,   # Tamaño original
+    drawing_mode=drawing_mode,
     key="canvas"
 )
 
-# 4. El resto de tu código (si existiera) permanecería aquí sin cambios
+# ===== PARTE 4: TUS FUNCIONES ORIGINALES =====
+# (Pega aquí todo el resto de tu código original)
+# def predecir_imagen():
+#     ...
+# if st.button("Predecir"):
+#     predecir_imagen()
